@@ -50,6 +50,29 @@ cd motorhat_script
 
 If the repository is private, make sure the Raspberry Pi can authenticate to GitHub with SSH keys or a credential helper before cloning.
 
+## Update from GitHub
+
+To update an existing checkout on the Raspberry Pi:
+
+```bash
+cd ~/motorhat_script
+git pull --ff-only
+```
+
+If dependencies or packaging metadata changed, reactivate the virtual environment and reinstall the project:
+
+```bash
+cd ~/motorhat_script
+source .venv/bin/activate
+python -m pip install -e .
+```
+
+If you also use the local test tools, reinstall them after pulling changes when needed:
+
+```bash
+python -m pip install pytest
+```
+
 ## Python environment setup
 
 Create and activate a project-local virtual environment on the Raspberry Pi:
