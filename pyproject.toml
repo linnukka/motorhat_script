@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "motorhat-script"
+version = "0.1.0"
+description = "Raspberry Pi Motor HAT control code with a python -m CLI entry point."
+requires-python = ">=3.13"
+dependencies = [
+    "adafruit-circuitpython-motorkit>=1.6.20",
+    "Adafruit-Blinka>=9.0.4",
+    "setuptools>=69",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=9.0.3"]
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+py-modules = ["config"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["application*", "cli*", "domain*", "infrastructure*"]

@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: motorhat-script
+Version: 0.1.0
+Summary: Raspberry Pi Motor HAT control code with a python -m CLI entry point.
+Requires-Python: >=3.13
+Requires-Dist: adafruit-circuitpython-motorkit>=1.6.20
+Requires-Dist: Adafruit-Blinka>=9.0.4
+Requires-Dist: setuptools>=69
+Provides-Extra: dev
+Requires-Dist: pytest>=9.0.3; extra == "dev"

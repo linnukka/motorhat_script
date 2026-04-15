@@ -1,0 +1,6 @@
+adafruit-circuitpython-motorkit>=1.6.20
+Adafruit-Blinka>=9.0.4
+setuptools>=69
+
+[dev]
+pytest>=9.0.3
