@@ -4,14 +4,20 @@ from __future__ import annotations
 
 import importlib.util
 from pathlib import Path
+import sys
 from types import ModuleType
 
 
-CLI_MODULE_PATH = Path(__file__).resolve().parent / "src" / "cli" / "__main__.py"
+REPOSITORY_ROOT = Path(__file__).resolve().parent
+SRC_ROOT = REPOSITORY_ROOT / "src"
+CLI_MODULE_PATH = SRC_ROOT / "cli" / "__main__.py"
 CLI_MODULE_NAME = "motorhat_script_cli_main"
 
 
 def _load_cli_module() -> ModuleType:
+    if str(SRC_ROOT) not in sys.path:
+        sys.path.insert(0, str(SRC_ROOT))
+
     spec = importlib.util.spec_from_file_location(CLI_MODULE_NAME, CLI_MODULE_PATH)
     if spec is None or spec.loader is None:
         raise RuntimeError(f"Unable to load CLI module from {CLI_MODULE_PATH}.")
