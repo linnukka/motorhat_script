@@ -108,7 +108,9 @@ If your hardware mapping or address differs, update the named configuration valu
 
 ## Current usage
 
-After installing the project with `python -m pip install -e .`, use the CLI directly from the repository root.
+With the virtual environment active, use the CLI directly from the repository root.
+
+If you followed the setup steps above, the runtime dependencies are already installed. The editable install command is still recommended so packaging metadata stays in sync, but `python -m cli` now resolves from the repository checkout itself.
 
 Show available commands:
 

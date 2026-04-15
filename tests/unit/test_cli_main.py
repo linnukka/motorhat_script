@@ -2,7 +2,10 @@
 
 from __future__ import annotations
 
+import importlib.util
+from pathlib import Path
 import pytest
+from types import ModuleType
 
 from application.commands import (
     RunMotorCommand,
@@ -10,8 +13,24 @@ from application.commands import (
     StopAllCommand,
     StopMotorCommand,
 )
-from cli import __main__ as cli_main
 from domain.motor import MotorId, Speed
+
+
+CLI_MAIN_PATH = Path(__file__).resolve().parents[2] / "src" / "cli" / "__main__.py"
+CLI_MAIN_MODULE_NAME = "test_target_cli_main"
+
+
+def _load_cli_main_module() -> ModuleType:
+    spec = importlib.util.spec_from_file_location(CLI_MAIN_MODULE_NAME, CLI_MAIN_PATH)
+    if spec is None or spec.loader is None:
+        raise AssertionError(f"Unable to load CLI module from {CLI_MAIN_PATH}.")
+
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
+cli_main = _load_cli_main_module()
 
 
 class FakeMotorService:
